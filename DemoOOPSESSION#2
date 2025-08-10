@@ -1,0 +1,534 @@
+// car.cs
+
+using System;
+using System.collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace Session03OOPDemo
+{
+     class Car
+     {
+        #region Attributes
+        
+        private int id;
+        
+        private string? model;
+        
+        private double speed;
+        
+        
+        
+        
+        #endregion
+        
+        
+        #region Properties
+        
+        //Automatic Property
+        
+        public int id {get; set;}
+        public string? model {get; set;}
+        public double speed {get; set;}
+        #endregion
+        
+        #region CTOR
+        
+        public Car(int _id , string? _model, double _speed)
+        {
+            id = _id;
+            model = _model;
+            speed =_speed;
+            
+            Console.WriteLine("1st CTOR");
+        }
+        
+        public Car(int _id , string? _model):this(_id,_model, 360)
+        {
+            id = _id;
+            model = _model;
+        }
+        
+        
+        public Car(int _id ):this(_id,"BMW", 360)
+        {
+            
+        }
+        
+        
+        #endregion
+        
+        #region methods
+        
+        public override string ToString()
+        {
+            return $"ID : {id}\nModel : {model}\nSpeed : {speed}"
+        }
+        
+        #endregion
+        
+        
+        
+     }
+}
+
+
+// PhoneBook
+
+using System;
+using System.collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Session02DemoG03
+{
+    internal struct PhoneBook
+    {
+        
+        #region Attributes
+        
+        string[] Names;
+        long[] Numbers;
+        
+        int size;
+        
+        
+        #endregion
+        
+        
+        public int Size
+        {
+            get {return size;}
+        }
+        
+        #region Using GetterSetter
+        
+        public long GetPersonNumber(string Name)
+        {
+            if (Names is not null && Numbers is not null)
+            {
+                for (int i = 0; i < Names.Length; i++)
+                {
+                    if (Name == Names[i])
+                        return Numbers[i];
+                }
+            }
+            return -1;
+            
+        }
+        
+        // set value in array
+        
+        public void SetPersonNumber(string Name, long NewNumber)
+        {
+            if (Names is not null && Numbers is not null)
+            {
+                 if (Names is not null && Numbers is not null)
+                 {
+                      for (int i = 0; i < Names.Length; i++)
+                      {
+                            if (Name == Names[i])
+                            {
+                               Numbers[i] = NewNumber;
+                               return;
+                            }  
+                      }
+                 }
+                
+            }
+        }
+        
+        
+        
+        
+        #endregion
+        
+        
+        #region Indexer
+        
+        // Special Type Of Property Using KeyWord [this]
+        // This => Refer to PhoneBook Struct
+        
+        public long this[string Name]
+        {
+            get
+            {
+                if (Names is not null && Numbers is not null)
+                {
+                    for (int i = 0; i < Names.Length; i++)
+                    {
+                        if (Name == Names[i])
+                            return Numbers[i];
+                    }
+                }
+                return -1;
+            
+            }
+            set
+            {
+               if (Names is not null && Numbers is not null)
+               {
+                 if (Names is not null && Numbers is not null)
+                 {
+                      for (int i = 0; i < Names.Length; i++)
+                      {
+                            if (Name == Names[i])
+                            {
+                               Numbers[i] = value;
+                               return;
+                            }  
+                      }
+                 }
+                
+               } 
+            }
+        }
+        
+        // method to print specific person by index
+        
+        public string this[int index]
+        {
+            get
+            {
+                return $"{index} :: {Names[index]} :: {Numbers[index]}";
+            }
+        }
+        
+        #endregion
+        
+        #region Constructor
+        
+        public PhoneBook(int _size)
+        {
+            size = _size;
+            Names = new string[size];
+            Numbers = new long[size];
+        }
+        
+        
+        #endregion
+        
+        
+        #region Methods
+        // methode to add person with phone number 
+        
+        
+        // position name number 
+        
+        public void  AddPerson(int Position, string Name , long Num)
+        {
+            
+            if (names != null && Numbers != null)
+            {
+                    if (Position >= 0 && Position < size)
+                    {
+                        Names[Position] = Name;
+                        Numbers[Position] = Numbers;
+                    }
+            }
+            
+        }
+        
+        
+        #endregion
+        
+        
+    }
+}
+
+// Employee.cs
+
+
+using System;
+using System.collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Session02DemoG03
+{
+    internal struct Employee
+    {
+        #region Attributes
+        
+        private int Id;
+        
+        private string Name;
+        
+        private decimal Salary;
+        #endregion
+        
+        // Apply Encapsulation
+        
+        // 1- All Attributes Must Be private
+        
+        
+            // 1- use gettersetter methods
+            // 2- properties
+            
+        #region 1- Apply Encapsulation Using GetterSetter methods
+        
+        //Getter => getName
+        
+        public string GetName()
+        {
+            return Name;
+        }
+        
+        
+        public void SetName(string name)
+        {
+            Name = name.Length > 10 ? name.Substring(0,10) : name;
+        }
+        #endregion
+        
+        
+        
+        #region 2- Apply Encapsulation Using Properties
+        
+        private decimal salary;
+        
+        #region Full Property| propfull + tab + tab
+        
+        // you need to apply validation
+        
+        public decimal Salary
+        {
+            get
+            {
+                return Salary;
+            }
+            set
+            {
+               Salary =  value < 10000 ? 5000 : value;
+            }
+        }
+        
+        #endregion
+        
+        #region Automatic Property propfull + tab + tab
+        
+        // when you doesnt need to validate
+        
+        public int Age {get; set;}
+        
+        
+        public string Name01 {get; set;}
+        
+        //private string name01; => CLR => Baking Field
+        
+        
+        #endregion
+        
+        #endregion
+        
+        
+        
+        
+        #region Consructor
+        
+        // 1- public Employee() => Manually
+        
+        // 2- CTOR + TAB
+        
+        // 3- From Attributes
+        
+        public Employee(int _id, string _Name, decimal _Salary)
+        {
+            id = _id;
+            Name = _Name;
+            Salary = _Salary;
+        }
+        
+        #endregion
+        
+        
+        #region Method
+        
+        public override string ToString()
+        {
+            return $"id : {id} \n Name : {Name} \nSalary : {Salary c}";
+        }
+        
+        
+        #endregion
+        
+        
+        
+    }
+    
+}
+
+
+// main.cs
+
+
+using System;
+namespace Session02DemoG03
+{
+    
+    
+    internal class Program
+    {
+
+    #region User Defined Datatype [struct]
+    
+    
+    /*
+     Struct Value Type
+     
+     Struct Comes from C Language
+     
+     Struct Doesnt Allow Inheretence
+     
+     Struct [Private , Public , Internal]
+    
+    */
+    
+    point p1;
+    
+    p1 = new point(10);
+    // New => Just For Constructor Selection
+    
+    Console.WriteLine(p1);
+    
+    
+    
+    #endregion
+    
+    
+    #region OOPDef
+    /*
+       oop => Object Orianted Programming
+       
+       Focus on Object
+       
+       C# Pure OOP
+       
+       1- Encapsulation
+       
+       2- Inheretance
+       
+       3- PolyMorphism
+       
+       4- Abstraction
+    
+    */
+    
+    #endregion
+    
+    
+    #region Encapsulation
+    
+    Employee emp01 = new Employee(1, "Hossam", 1000);
+    
+   
+    
+    // emp01.id = -100;
+    
+    // emp01.Name = "Ay7AGA";
+    
+    // Console.WriteLine(emp01);
+    
+    
+    Console.WriteLine(emp01.GetName());
+    emp01.SetName("Ahmed");
+    
+     Console.WriteLine(emp01.GetName());
+     
+     emp01.Salary = 15000
+     
+     Console.WriteLine(emp01.Salary)
+    
+    #endregion
+    
+    
+    #region indexer
+    
+    PhoneBook Note = New PhoneBook(3);
+    
+    Note.AddPerson(0, "Hossam", 123);
+    Note.AddPerson(1, "Aly", 456);
+    Note.AddPerson(2, "Aya", 789);
+    
+    Console.WriteLine(Note.GetPersonNumber("Aly"));
+    
+    Note.SetPersonNumber("Hossam", 102030);
+    
+    Console.WriteLine(Note.GetPersonNumber("Hossam"));
+    
+    Note['Aly'] = 304050;
+    
+    Console.WriteLine(Note[1]);
+    
+    #endregion
+    
+    
+   }
+}
+
+
+
+
+//point.cs
+
+
+using System;
+using System.collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Session02DemoG03
+{
+    internal struct Point
+    {
+        #region Attributes
+        public int x;
+        
+        public int y;
+        
+        #endregion
+        
+        
+        #region Constructor
+        
+        // C# 9
+        //empty parameter less CTOR
+        
+        public Point(int _x , int _y)
+        {
+            x=_x;
+            y=_y;
+        }
+        
+        
+        // c# 10
+        
+        // Compiler Will generate empty parameter CTOR
+        
+        
+        public Point(int _x) 
+        {
+            x=_x;
+        }
+        
+        #endregion
+        
+        #region Method
+        
+        
+        public override string ToString()
+        {
+            return $"X : {x} , Y : {y} ";
+        }
+        
+        
+        #endregion
+    }
+}
+
+
