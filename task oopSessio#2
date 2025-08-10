@@ -1,1 +1,126 @@
+#region 1
+
+using System;
+
+struct Person
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        
+        Person[] p1 = new Person[3];
+
+       
+        p1[0] = new Person("Alice", 25);
+        p1[1] = new Person("Bob", 30);
+        p1[2] = new Person("Charlie", 22);
+
+        
+        for (int i = 0; i < p1.Length; i++)
+        {
+            Console.WriteLine($"Name: {p1[i].Name}, Age: {p1[i].Age}");
+        }
+    }
+}
+
+#endregion
+
+
+#region 2
+
+using System;
+
+struct Point
+{
+    public double X { get; set; }
+    public double Y { get; set; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Point[] points = new Point[2];
+
+        for (int i = 0; i < points.Length; i++)
+        {
+            Console.Write($"Enter X for Point {i + 1}: ");
+            points[i].X = double.Parse(Console.ReadLine());
+
+            Console.Write($"Enter Y for Point {i + 1}: ");
+            points[i].Y = double.Parse(Console.ReadLine());
+        }
+
+        double dx = points[1].X - points[0].X;
+        double dy = points[1].Y - points[0].Y;
+        double d = Math.Sqrt(dx * dx + dy * dy);
+
+        Console.WriteLine($"Distance: {d:F2}");
+    }
+}
+
+#endregion
+
+#region 3
+
+
+using System;
+
+struct Person
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+
+    public Person(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Person[] persons = new Person[3];
+
+    
+        for (int i = 0; i < persons.Length; i++)
+        {
+            Console.Write($"Enter name of {i + 1}: ");
+            string name = Console.ReadLine();
+
+            Console.Write($"Enter age of {name}: ");
+            int age = int.Parse(Console.ReadLine());
+
+            persons[i] = new Person(name, age);
+        }
+        
+        Person older = persons[0];
+        for (int i = 1; i < persons.Length; i++)
+        {
+            if (persons[i].Age > older.Age)
+            {
+                older = persons[i];
+            }
+        }
+
+        Console.WriteLine($"Older person: {older.Name}, Age: {older.Age}");
+    }
+}
+
+
+#endregion
+
 
